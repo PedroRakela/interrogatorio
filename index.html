@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detector de Mentiras</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- olá professora debora, gostaria de te avisar que eu estou com a garganta inflamada -->
+ <!-- e por causa disso não pude comparecer na apresentação de amanha, 
+  mas eu deixei um bloco de notas com a explição e como foi feito o codigo que você pediu!-->
+  <!-- :) boa aula -->
+    
+<div class="jogo">
+  <h1>Detector de Mentiras</h1>
+  <p>Responda às perguntas da investigação!</p>
+
+  <div class="cenario">
+    
+    <div class="balao" id="pergunta">Você estava na sala quando o celular sumiu?</div>
+    <img src="interrogatorio_mentalista.jpg" alt="Interrogatório">
+  </div>
+
+  <h3 id="numero">Pergunta 1 de 10</h3>
+
+  <select id="resposta">
+    <option value="">Selecione sua resposta</option>
+    <option value="sim">Sim</option>
+    <option value="nao">Não</option>
+  </select>
+
+  
+  <script>
+    let atual = 1;
+
+    
+    let r1 = '';
+    let r2 = '';
+    let r3 = '';
+    let r4 = '';
+    let r5 = '';
+    let r6 = '';
+    let r7 = '';
+    let r8 = '';
+    let r9 = '';
+    let r10 = '';
+
+
+    let proxima = '';
+
+    
+    let q2 = 'Você viu o celular antes de ele desaparecer?';
+    let q3 = 'Você ficou sozinho(a) na sala em algum momento?';
+    let q4 = 'Você já mexeu nesse celular?';
+    let q5 = 'Você sabia onde o celular estava guardado?';
+    let q6 = 'Você tinha algum motivo para querer esse celular?';
+    let q7 = 'Você saiu da sala logo depois do sumiço?';
+    let q8 = 'Você conversou com alguém sobre pegar o celular?';
+    let q9 = 'Você escondeu o celular em algum lugar?';
+    let q10 = 'Você está escondendo algo do investigador?';
+  </script>
+
+  <button id="responder" onclick="
+    let resp = document.getElementById('resposta').value;
+
+    if (resp == '') {
+      
+      alert('Escolha uma resposta!');
+    } else {
+
+      
+      if (atual == 1) { r1 = resp; proxima = q2; }
+      else if (atual == 2) { r2 = resp; proxima = q3; }
+      else if (atual == 3) { r3 = resp; proxima = q4; }
+      else if (atual == 4) { r4 = resp; proxima = q5; }
+      else if (atual == 5) { r5 = resp; proxima = q6; }
+      else if (atual == 6) { r6 = resp; proxima = q7; }
+      else if (atual == 7) { r7 = resp; proxima = q8; }
+      else if (atual == 8) { r8 = resp; proxima = q9; }
+      else if (atual == 9) { r9 = resp; proxima = q10; }
+      else { r10 = resp; }
+
+      if (atual < 10) {
+        atual++;
+        document.getElementById('pergunta').innerHTML = proxima;
+        document.getElementById('numero').innerHTML = 'Pergunta ' + atual + ' de 10';
+        document.getElementById('resposta').value = '';
+
+    
+        if (atual == 10) {
+          document.getElementById('responder').innerHTML = 'Finalizar Teste';
+        }
+
+      } else {
+
+
+        let sim = 0;
+        if (r1 == 'sim') sim++;
+        if (r2 == 'sim') sim++;
+        if (r3 == 'sim') sim++;
+        if (r4 == 'sim') sim++;
+        if (r5 == 'sim') sim++;
+        if (r6 == 'sim') sim++;
+        if (r7 == 'sim') sim++;
+        if (r8 == 'sim') sim++;
+        if (r9 == 'sim') sim++;
+        if (r10 == 'sim') sim++;
+
+
+        let classificacao = '';
+        let mensagem = '';
+        let cor = '';
+        if (sim < 5) {
+          classificacao = 'INOCENTE';
+          mensagem = 'Você está livre de suspeitas. Pode ir para casa tranquilo!';
+          cor = 'inocente';
+        } else if (sim == 5) {
+          classificacao = 'SUSPEITO';
+          mensagem = 'Algumas respostas pareceram estranhas. Vamos ficar de olho em você!';
+          cor = 'suspeito';
+        } else if (sim <= 8) {
+          classificacao = 'CÚMPLICE';
+          mensagem = 'Você sabe mais do que diz e ajudou de alguma forma no sumiço!';
+          cor = 'cumplice';
+        } else {
+          classificacao = 'CULPADO';
+          mensagem = 'Caso encerrado! Todas as provas apontam para você!';
+          cor = 'culpado';
+        }
+
+
+        
+        let c1 = 0;
+        let c2 = 0;
+        let c3 = 0;
+        let c4 = 0;
+
+        /* P1 x P3: disse que NÃO estava na sala, mas ficou sozinho nela */
+        if (r1 == 'nao') { if (r3 == 'sim') { c1 = 1; } }
+
+        /* P1 x P7: disse que NÃO estava na sala, mas saiu dela */
+        if (r1 == 'nao') { if (r7 == 'sim') { c2 = 1; } }
+
+        /* P2 x P4: disse que NÃO viu o celular, mas mexeu nele */
+        if (r2 == 'nao') { if (r4 == 'sim') { c3 = 1; } }
+
+        /* P9 x P10: escondeu o celular, mas diz que não esconde nada */
+        if (r9 == 'sim') { if (r10 == 'nao') { c4 = 1; } }
+
+        /* Total de contradições */
+        let total = c1 + c2 + c3 + c4;
+
+        /* lista de contradições*/
+        let lista = '';
+        if (c1 == 1) { lista = lista + '<li>Pergunta 1 x 3: disse que não estava na sala, mas ficou sozinho(a) nela.</li>'; }
+        if (c2 == 1) { lista = lista + '<li>Pergunta 1 x 7: disse que não estava na sala, mas saiu dela.</li>'; }
+        if (c3 == 1) { lista = lista + '<li>Pergunta 2 x 4: disse que não viu o celular, mas mexeu nele.</li>'; }
+        if (c4 == 1) { lista = lista + '<li>Pergunta 9 x 10: escondeu o celular, mas disse que não esconde nada.</li>'; }
+
+        /*Veredito do detector conforme o total de contradições */
+        let veredito = '';
+        let corVeredito = '';
+        if (total == 0) {
+          veredito = 'Respostas consistentes: nenhuma contradição.';
+          corVeredito = 'consistente';
+        } else if (total == 1) {
+          veredito = 'Atenção: 1 contradição detectada. Você pode estar mentindo!';
+          corVeredito = 'alerta';
+        } else {
+          veredito = 'MENTIRA DETECTADA! ' + total + ' contradições nas suas respostas.';
+          corVeredito = 'mentira';
+        }
+
+        
+        document.getElementById('resultado').className = cor;
+        document.getElementById('resultado').innerHTML =
+          '<h2>' + classificacao + '</h2>' +
+          '<p>Respostas &quot;Sim&quot;: ' + sim + ' de 10</p>' +
+          '<p>' + mensagem + '</p>';
+        document.getElementById('resultado').style.display = 'block';
+
+        document.getElementById('contradicoes').className = corVeredito;
+        document.getElementById('contradicoes').innerHTML =
+          '<h3>Detector de contradições</h3><p>' + veredito + '</p><ul>' + lista + '</ul>';
+        document.getElementById('contradicoes').style.display = 'block';
+
+    
+        document.getElementById('pergunta').innerHTML = 'Interrogatório encerrado!';
+        document.getElementById('numero').innerHTML = 'Fim do interrogatório';
+        document.getElementById('resposta').style.display = 'none';
+        document.getElementById('responder').style.display = 'none';
+        document.getElementById('reiniciar').style.display = 'inline-block';
+      }
+    }
+  ">Responder</button>
+
+  <div id="resultado"></div>
+  <div id="contradicoes"></div>
+
+  <button id="reiniciar" onclick="location.reload()">Reiniciar</button>
+</div>
+
+</body>
+</html>

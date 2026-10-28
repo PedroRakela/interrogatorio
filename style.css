@@ -1,0 +1,123 @@
+/* ===== Página ===== */
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(160deg, #e8eef5, #c9d6ea);
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+}
+
+/* ===== Caixa principal ===== */
+.jogo {
+  background-color: white;
+  max-width: 650px;
+  margin: auto;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px #0002;
+}
+
+h1 {
+  color: #263c60;
+}
+
+/* ===== Cenário (imagem + balão com a pergunta atual) ===== */
+.cenario {
+  position: relative;
+  margin-top: 20px;
+}
+
+.cenario img {
+  width: 100%;
+  max-width: 480px;
+}
+
+.balao {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff3c4;
+  border: 2px solid #333;
+  border-radius: 15px;
+  padding: 12px;
+  width: 65%;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* ===== Número da pergunta ===== */
+#numero {
+  color: #263c60;
+}
+
+select {
+  padding: 12px;
+  width: 220px;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+/* ===== Botões ===== */
+button {
+  padding: 12px 20px;
+  margin: 10px;
+  background-color: #263c60;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #4169a1;
+}
+
+#reiniciar {
+  display: none;
+  background-color: #35834b;
+}
+
+/* ===== Resultado (cor muda conforme a classificação) ===== */
+#resultado {
+  display: none;
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 12px;
+  color: white;
+}
+
+#resultado h2 {
+  margin: 5px 0;
+}
+
+.inocente { background-color: #35834b; }
+.suspeito { background-color: #d99a00; }
+.cumplice { background-color: #d9631e; }
+.culpado  { background-color: #b32626; }
+
+/* ===== NOVO: caixa do sistema de contradições ===== */
+#contradicoes {
+  display: none;
+  margin-top: 15px;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: left;
+  background-color: #f4f7fb;
+  border-left: 6px solid #263c60;
+  color: #263c60;
+}
+
+#contradicoes h3 {
+  margin: 0 0 8px 0;
+}
+
+#contradicoes ul {
+  margin: 8px 0 0 0;
+  padding-left: 20px;
+}
+
+.consistente { border-left-color: #35834b !important; }
+.alerta      { border-left-color: #d99a00 !important; }
+.mentira     { border-left-color: #b32626 !important; }
