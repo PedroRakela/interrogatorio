@@ -1,4 +1,4 @@
-/* ===== Página ===== */
+
 body {
   font-family: Arial, sans-serif;
   background: linear-gradient(160deg, #e8eef5, #c9d6ea);
@@ -7,7 +7,7 @@ body {
   padding: 20px;
 }
 
-/* ===== Caixa principal ===== */
+
 .jogo {
   background-color: white;
   max-width: 650px;
@@ -21,7 +21,7 @@ h1 {
   color: #263c60;
 }
 
-/* ===== Cenário (imagem + balão com a pergunta atual) ===== */
+
 .cenario {
   position: relative;
   margin-top: 20px;
@@ -46,7 +46,7 @@ h1 {
   font-weight: bold;
 }
 
-/* ===== Número da pergunta ===== */
+
 #numero {
   color: #263c60;
 }
@@ -58,7 +58,7 @@ select {
   font-size: 16px;
 }
 
-/* ===== Botões ===== */
+
 button {
   padding: 12px 20px;
   margin: 10px;
@@ -79,7 +79,7 @@ button:hover {
   background-color: #35834b;
 }
 
-/* ===== Resultado (cor muda conforme a classificação) ===== */
+
 #resultado {
   display: none;
   margin-top: 20px;
@@ -97,7 +97,7 @@ button:hover {
 .cumplice { background-color: #d9631e; }
 .culpado  { background-color: #b32626; }
 
-/* ===== NOVO: caixa do sistema de contradições ===== */
+
 #contradicoes {
   display: none;
   margin-top: 15px;
